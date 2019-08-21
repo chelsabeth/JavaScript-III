@@ -16,9 +16,9 @@
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 function GameObject (attributes) {
-  this.createdAt = attributes.created,
+  this.createdAt = attributes.createdAt,
   this.name = attributes.name,
-  this.demensions = attributes.demensions
+  this.dimensions = attributes.dimensions
 };
   GameObject.prototype.destroy = function() {
     return `${this.name} was removed from game.`;
@@ -34,7 +34,7 @@ function GameObject (attributes) {
 */
 function CharacterStats (attributes) {
   GameObject.call(this, attributes)
-  this.healthpoints = attributes.health
+  this.healthPoints = attributes.healthPoints
 }
 
 CharacterStats.prototype = Object.create(GameObject.prototype);
@@ -55,7 +55,7 @@ CharacterStats.prototype.takeDamage = function() {
 function Humanoid (attributes) {
   CharacterStats.call(this, attributes)
   this.team = attributes.team,
-  this.weapons = attributes.weapon,
+  this.weapons = attributes.weapons,
   this.language = attributes.language
 } 
 
@@ -66,26 +66,30 @@ Humanoid.prototype.greet = function() {
 }
 
 
-// // Hero
-// function Hero(character){
-//   Humanoid.call(this, character);
-//   armor: character.armor;
-//   goodness: character.goodness;
-// }
+// Hero
+function Hero(character){
+  Humanoid.call(this, character);
+  this.armor = character.armor;
+  this.goodness = character.goodness;
+}
 
-// Hero.prototype.greet = function() {
-//   return `here is your mighty hero ${this.name}`
-// }
-// // Villian
-// function Villian(character){
-//   Humanoid.call(this, character);
-//   armor: character.armor;
-//   goodness: character.goodness;
-// }
+Hero.prototype = Object.create(Humanoid.prototype);
 
-// Villian.prototype.greet = function() {
-//   return `beware of your eveil villian ${this.name}`
-// }
+Hero.prototype.greet = function() {
+  return `here is your mighty hero ${this.name}`
+}
+// Villian
+function Villain(character){
+  Humanoid.call(this, character);
+  this.armor = character.armor;
+  this.goodness = character.goodness;
+}
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+Villain.prototype.greet = function() {
+  return `beware of your evil villian ${this.name}`
+}
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -94,41 +98,41 @@ Humanoid.prototype.greet = function() {
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-// //Hero 
-// const superHero = new Hero({
-//   createdAt: new Date(),
-//     dimensions: {
-//       length: 2,
-//       width: 2,
-//       height: 8,
-//     },
-//     healthPoints: 150,
-//     name: 'Paxton',
-//     team: 'Mighty Sea',
-//     weapons: [
-//       'Tritan of the Sea',
-//       'Waterbending',
-//     ],
-//     language: 'Merlanguage',
-// });
+//Hero 
+const superHero = new Hero({
+  createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 2,
+      height: 8,
+    },
+    healthPoints: 150,
+    name: 'Paxton',
+    team: 'Mighty Sea',
+    weapons: [
+      'Tritan of the Sea',
+      'Waterbending',
+    ],
+    language: 'Merlanguage',
+});
 
-// //Villian 
-// const mage = new Hero({
-//   createdAt: new Date(),
-//   dimensions: {
-//     length: 2,
-//     width: 2,
-//     height: 10,
-//   },
-//   healthPoints: 120,
-//   name: 'Rafe',
-//   team: 'The Underworld',
-//   weapons: [
-//     'The Sword of Flames',
-//     'Firebending',
-//   ],
-//   language: 'Common Tongue',
-// });
+//Villian 
+const evilVillain = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 2,
+    height: 10,
+  },
+  healthPoints: 120,
+  name: 'Rafe',
+  team: 'The Underworld',
+  weapons: [
+    'The Sword of Flames',
+    'Firebending',
+  ],
+  language: 'Common Tongue',
+});
 
   const mage = new Humanoid({
     createdAt: new Date(),
@@ -190,6 +194,8 @@ Humanoid.prototype.greet = function() {
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  console.log(superHero.greet());
+  console.log(evilVillain.greet());
 
 
   // Stretch task: 
