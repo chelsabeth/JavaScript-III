@@ -43,7 +43,6 @@ CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage.`
 }
 
-
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -67,6 +66,26 @@ Humanoid.prototype.greet = function() {
 }
 
 
+// // Hero
+// function Hero(character){
+//   Humanoid.call(this, character);
+//   armor: character.armor;
+//   goodness: character.goodness;
+// }
+
+// Hero.prototype.greet = function() {
+//   return `here is your mighty hero ${this.name}`
+// }
+// // Villian
+// function Villian(character){
+//   Humanoid.call(this, character);
+//   armor: character.armor;
+//   goodness: character.goodness;
+// }
+
+// Villian.prototype.greet = function() {
+//   return `beware of your eveil villian ${this.name}`
+// }
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -75,6 +94,41 @@ Humanoid.prototype.greet = function() {
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
+// //Hero 
+// const superHero = new Hero({
+//   createdAt: new Date(),
+//     dimensions: {
+//       length: 2,
+//       width: 2,
+//       height: 8,
+//     },
+//     healthPoints: 150,
+//     name: 'Paxton',
+//     team: 'Mighty Sea',
+//     weapons: [
+//       'Tritan of the Sea',
+//       'Waterbending',
+//     ],
+//     language: 'Merlanguage',
+// });
+
+// //Villian 
+// const mage = new Hero({
+//   createdAt: new Date(),
+//   dimensions: {
+//     length: 2,
+//     width: 2,
+//     height: 10,
+//   },
+//   healthPoints: 120,
+//   name: 'Rafe',
+//   team: 'The Underworld',
+//   weapons: [
+//     'The Sword of Flames',
+//     'Firebending',
+//   ],
+//   language: 'Common Tongue',
+// });
 
   const mage = new Humanoid({
     createdAt: new Date(),
