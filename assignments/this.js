@@ -17,7 +17,7 @@ function banana(){
 }
 
 banana();
-const fruit = 'banana';
+const fruit = '🍌';
 // Principle 2
 
 // code example for Implicit Binding
